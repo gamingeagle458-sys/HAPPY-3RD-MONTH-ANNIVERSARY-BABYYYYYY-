@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3rd Month Anniversary ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e0,#ff9eb5);
+    overflow:hidden;
+    position:relative;
+}
+
+.container{
+    width:90%;
+    max-width:750px;
+    z-index:2;
+}
+
+.card{
+    background:white;
+    padding:50px 30px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+    position:relative;
+    overflow:hidden;
+}
+
+.message{
+    font-size:32px;
+    color:#ff4f7b;
+    line-height:1.8;
+    min-height:150px;
+}
+
+.startText{
+    font-size:24px;
+    margin-bottom:20px;
+    color:#ff4f7b;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    padding:16px 35px;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:20px;
+    transition:0.3s;
+    color:white;
+}
+
+.yesBtn{ 
+    background:#ff4f7b; 
+}
+
+.noBtn{ 
+    background:#ff8fab; 
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+/* Floating Hearts */
+
+.heart{
+    position:absolute;
+    bottom:-20px;
+    color:#ff4f7b;
+    font-size:22px;
+    animation:floatUp linear infinite;
+    opacity:0.7;
+    z-index:1;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) scale(0.5) rotate(0deg);
+        opacity:0;
+    }
+
+    20%{
+        opacity:0.8;
+    }
+
+    100%{
+        transform:translateY(-120vh) scale(1.4) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Cute Pulse Animation */
+
+.card::before{
+    content:"❤️";
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:30px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.3);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="message" id="message">
+            My babyyy😊<br>
+            Play "Dandelions" in background in low volume❤️<br><br>
+            Click Start 😊
+        </div>
+
+        <div class="buttons" id="buttons">
+            <button class="yesBtn" onclick="nextStep()">
+                Click Me Babyyy❤️
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+let step = 0;
+
+const scenes = [
+
+{
+msg:"🦇 BatMan: Heyy babyyy ☀️ Happy 3rd Month Anniversary❤️",
+buttons:[
+{text:"☀️ SunShine: Aww babyyy 😊 Happy 3 months to you too❤️",action:"next"}
+]
+},
+
+{
+msg:"🦇 BatMan: Life feels brighter with you babyyy❤️",
+buttons:[
+{text:"☀️ SunShine: And mine feels safer with you my BatMan🤭❤️",action:"next"}
+]
+},
+
+{
+msg:"🦇 BatMan: You’re my sunshine in the dark nights babyyy☀️❤️",
+buttons:[
+{text:"☀️ SunShine: And you’re my hero in every storm🦇❤️",action:"next"}
+]
+},
+
+{
+msg:"🦇 BatMan: I love you babyyy so much❤️",
+buttons:[
+{text:"☀️ SunShine: I love you moreee babyyy😘❤️",action:"next"}
+]
+},
+
+{
+msg:"🦇 BatMan: We will stay together forever babyyy?❤️",
+buttons:[
+{text:"☀️ SunShine: Forever and always my BatMan❤️",action:"next"}
+]
+},
+
+{
+msg:"🦇 BatMan: Happy 3rd Month Anniversary babyyy❤️🌹",
+buttons:[
+{text:"☀️ SunShine: Happiest 3 months my love babyyy❤️",action:"next"}
+]
+},
+
+{
+msg:"🦇 BatMan: You are my whole world babyyy❤️",
+buttons:[
+{text:"☀️ SunShine: And you are my whole galaxy🥺❤️",action:"next"}
+]
+},
+
+{
+msg:"Forever Together Babyyy❤️",
+buttons:[
+{text:"yayyyyyyyyyyyyyyyyyyyyyy😊",action:"restart"}
+]
+}
+
+];
+
+function nextStep(){
+
+    if(step >= scenes.length) step = 0;
+
+    const scene = scenes[step];
+
+    document.getElementById("message").innerHTML = scene.msg;
+
+    const buttonsDiv = document.getElementById("buttons");
+    buttonsDiv.innerHTML = "";
+
+    scene.buttons.forEach(btn=>{
+
+        const button = document.createElement("button");
+        button.innerHTML = btn.text;
+
+        if(btn.action === "restart"){
+            button.className = "yesBtn";
+            button.onclick = ()=>{
+                step = 0;
+                nextStep();
+            };
+        } else {
+            button.className = "yesBtn";
+            button.onclick = ()=>{
+                step++;
+                nextStep();
+            };
+        }
+
+        buttonsDiv.appendChild(button);
+    });
+}
+
+/* Floating Hearts Generator */
+
+function createHeart(){
+
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize = (20 + Math.random() * 25) + "px";
+
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },8000);
+}
+
+setInterval(createHeart,400);
+
+</script>
+
+</body>
+</html>
